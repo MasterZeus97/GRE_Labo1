@@ -45,24 +45,33 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public List<Integer> neighbors(int v) {
-    // TODO: A implémenter
-    return null;
+    return graphEdges.get(v);
   }
 
   @Override
   public boolean areAdjacent(int u, int v) {
     // TODO: A implémenter
-    return false;
+    return graphEdges.get(u).contains(v);
   }
 
   @Override
   public void addEdge(int u, int v) {
+    var edges = graphEdges.get(u);
 
+    if(!edges.contains(v)) {
+      edges.add(v);
+      graphEdges.get(v).add(u);
+    }
   }
 
   @Override
   public void removeEdge(int u, int v) {
-    // TODO: A implémenter
+    var edges = graphEdges.get(u);
+
+    if(edges.contains(v)) {
+      edges.remove((Integer)v);
+      graphEdges.get(v).remove((Integer)u);
+    }
   }
 
   @Override

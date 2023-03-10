@@ -2,6 +2,7 @@ package gre.lab1.groupe13;
 
 import gre.lab1.graph.GridGraph2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // TODO: javadoc
@@ -11,6 +12,8 @@ public final class GridGraph implements GridGraph2D {
 
   /** Hauteur de la grille. */
   private final int height;
+
+  ArrayList<ArrayList<int>> graphEdges;
 
   /**
    * Construit une grille carrée.
@@ -32,6 +35,8 @@ public final class GridGraph implements GridGraph2D {
 
     this.width = width;
     this.height = height;
+
+    graphEdges = new ArrayList<>(width*height);
   }
 
   @Override
@@ -58,8 +63,7 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public int nbVertices() {
-    // TODO: A implémenter
-    return 0;
+    return width * height;
   }
 
   @Override

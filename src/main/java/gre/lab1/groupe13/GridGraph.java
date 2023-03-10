@@ -13,7 +13,7 @@ public final class GridGraph implements GridGraph2D {
   /** Hauteur de la grille. */
   private final int height;
 
-  ArrayList<ArrayList<int>> graphEdges;
+  ArrayList<ArrayList<Integer>> graphEdges;
 
   /**
    * Construit une grille carrée.
@@ -37,6 +37,10 @@ public final class GridGraph implements GridGraph2D {
     this.height = height;
 
     graphEdges = new ArrayList<>(width*height);
+
+    for (int i = 0; i < width*height; i++) {
+      graphEdges.add(new ArrayList<>());
+    }
   }
 
   @Override
@@ -53,7 +57,7 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public void addEdge(int u, int v) {
-    // TODO: A implémenter
+
   }
 
   @Override
@@ -68,8 +72,7 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public boolean vertexExists(int v) {
-    // TODO: A implémenter
-    return false;
+    return v < nbVertices();
   }
 
   @Override
@@ -87,6 +90,22 @@ public final class GridGraph implements GridGraph2D {
    * @param graph Un graphe.
    */
   public static void bindAll(GridGraph graph) {
-    // TODO: A implémenter
+    for (int x = 0; x < graph.width; x++) {
+      for(int y = 0; y < graph.height; y++) {
+        int u = x + y * graph.width;
+
+        if(x + 1 < graph.width) {
+          int v = (x + 1) + y * graph.width;
+          graph.graphEdges.get(u).add(v);
+          graph.graphEdges.get(v).add(u);
+        }
+
+        if(y + 1 < graph.height) {
+          int v = x + (y + 1) * graph.width;
+          graph.graphEdges.get(u).add(v);
+          graph.graphEdges.get(v).add(u);
+        }
+      }
+    }
   }
 }

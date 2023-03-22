@@ -13,21 +13,10 @@ import java.util.HashSet;
 public final class DFSMazeGenerator implements MazeGenerator {
   @Override
   public void generate(MazeBuilder builder, int from) {
-    // TODO: A implémenter
-    //  NOTES D'IMPLÉMENTATION :
-    //  Afin d'obtenir l'affichage adéquat, indiquer la progression (en tant que label du sommet traité) :
-    //  - PROCESSING, en pré-traitement;
-    //  - PROCESSED, en post-traitement.
-    //  Le labyrinthe n'a que des murs au début de la construction, il faut donc créer les passages en
-    //  supprimant des murs.
-
-    var visted = new HashSet<Integer>();
-    dfs(builder, visted, from);
+    dfs(builder, from);
   }
-
-
-  void dfs(MazeBuilder builder, HashSet<Integer> visited, int node) {
-    visited.add(node);
+  
+  void dfs(MazeBuilder builder, int node) {
     builder.progressions().setLabel(node, Progression.PROCESSING);
 
     var neighbors = builder.topology().neighbors(node);
@@ -35,10 +24,9 @@ public final class DFSMazeGenerator implements MazeGenerator {
     Collections.shuffle(neighbors);
 
     for (var neighbor : neighbors) {
-      if(!visited.contains(neighbor)) {
+      if(builder.progressions().getLabel(neighbor) == Progression.PENDING) {
         builder.removeWall(node, neighbor);
-        visited.add(neighbor);
-        dfs(builder, visited, neighbor);
+        dfs(builder, neighbor);
       }
     }
     builder.progressions().setLabel(node, Progression.PROCESSED);

@@ -30,8 +30,9 @@ public final class GridGraph implements GridGraph2D {
    * @throws IllegalArgumentException si {@code width} ou {@code length} sont négatifs ou nuls.
    */
   public GridGraph(int width, int height) {
-    if (width <= 0 || height <= 0)
+    if (width <= 0 || height <= 0) {
       throw new IllegalArgumentException("Width: " + width + " and height: " + height + " must be positive");
+    }
 
     this.width = width;
     this.height = height;
@@ -45,12 +46,11 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public List<Integer> neighbors(int v) {
-    return graphEdges.get(v);
+    return new ArrayList<>(graphEdges.get(v));
   }
 
   @Override
   public boolean areAdjacent(int u, int v) {
-    // TODO: A implémenter
     return graphEdges.get(u).contains(v);
   }
 

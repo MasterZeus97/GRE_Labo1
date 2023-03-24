@@ -46,16 +46,21 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public List<Integer> neighbors(int v) {
+    if(!vertexExists(v)) {
+      throw new IndexOutOfBoundsException("\"v\" is out of bounds");
+    }
     return new ArrayList<>(graphEdges.get(v));
   }
 
   @Override
   public boolean areAdjacent(int u, int v) {
+    checkValidity(u, v);
     return graphEdges.get(u).contains(v);
   }
 
   @Override
   public void addEdge(int u, int v) {
+    checkValidity(u, v);
     var edges = graphEdges.get(u);
 
     if(!edges.contains(v)) {
@@ -66,6 +71,7 @@ public final class GridGraph implements GridGraph2D {
 
   @Override
   public void removeEdge(int u, int v) {
+    checkValidity(u, v);
     var edges = graphEdges.get(u);
 
     if(edges.contains(v)) {
@@ -115,6 +121,15 @@ public final class GridGraph implements GridGraph2D {
           graph.graphEdges.get(v).add(u);
         }
       }
+    }
+  }
+
+  void checkValidity(int u, int v) {
+    if(!vertexExists(u)) {
+      throw new IndexOutOfBoundsException("\"u\" is out of bounds");
+    }
+    if(!vertexExists(v)) {
+      throw new IndexOutOfBoundsException("\"v\" is out of bounds");
     }
   }
 }

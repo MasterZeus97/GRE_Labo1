@@ -9,6 +9,8 @@ import java.util.Collections;
 /**
  * Classe DFSMazeGenerator. Cette classe permet de générer un labyrinthe à partir d'un graphe représentant un carré de
  * cases côtes à côtes.
+ * @author Praz Tobie
+ * @author Seem Thibault
  */
 public final class DFSMazeGenerator implements MazeGenerator {
   /**

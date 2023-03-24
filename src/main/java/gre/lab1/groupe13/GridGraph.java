@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * Classe GridGraph. Permet de gérer toutes les connexions entre les sommets du graphe.
+ * @author Praz Tobie
+ * @author Seem Thibault
  */
 public final class GridGraph implements GridGraph2D {
   /** Largeur de la grille. */

@@ -5,7 +5,9 @@ import gre.lab1.graph.GridGraph2D;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: javadoc
+/**
+ * Classe GridGraph. Permet de gérer toutes les connexions entre les sommets du graphe.
+ */
 public final class GridGraph implements GridGraph2D {
   /** Largeur de la grille. */
   private final int width;
